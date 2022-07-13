@@ -1,3 +1,38 @@
+// galerie des photos
+const changeButtonPrev = document.getElementById("button-pictures-prev");
+const changeButtonNext = document.getElementById("button-pictures-next");
+const pictArray = ["img/canard-jaune-1-l.png","img/canard-jaune-2-l.png","img/canard-jaune-3-l.png","img/canard-jaune-4-l.png","img/canard-jaune-5-l.png"];
+const mainImage =document.getElementById("pictures-img")
+const littlePict = document.querySelectorAll("#thumbs .thumbs-img");
+let i = 0; 
+
+function changeImageNext() {
+    mainImage.setAttribute("src", pictArray[i]);
+    i = (i + 1) % pictArray.length;
+}
+function changeImagePrev() {
+    mainImage.setAttribute("src", pictArray[i]);
+    i = (i + 1) % pictArray.length;
+}
+
+changeButtonNext.addEventListener("click", function () {
+    changeImageNext()
+})
+
+changeButtonPrev.addEventListener("click", function () {
+    changeImagePrev()
+})
+
+//galerie photos version desktop
+
+littlePict.forEach(function(pic){
+    pic.addEventListener("mouseover", function(event) {
+    mainImage.setAttribute("src", this.getAttribute("target"));
+    })
+})
+
+
+
 
 // Ajout de quantités au panier
 
@@ -19,36 +54,30 @@ addCartButton.addEventListener("click", function () {
     DisableButton()
 })
 
-//défilement des images
-
-// const prevButtonDuck = document.getElementById(button-pictures-next)
-// const nextButtonDuck = document.getElementById(button-pictures-prev)
-
-// function navRight() {
-//     prevButtonDuck.addEventListener("click" , function(){
-
-//     })
-    
-// }
-
 //Accordéons
 const avantageList = document.getElementById("avantage");
 const caractList = document.getElementById("caract")
 
-function closeAccordeons() {
+function openCloseAccordeons() {
+    localStorage.getItem("myKey");
     avantageList.addEventListener("click", function () {
-        document.getElementById("product-advantages").style.display = 'none';
+       if(document.getElementById("product-advantages").style.display == 'none')document.getElementById("product-advantages").style.display = 'block';
+       else{
+        document.getElementById("product-advantages").style.display = 'none'
+       }
         avantage.classList.toggle("closed")
     })
     caractList.addEventListener("click", function () {
-        document.getElementById("product-car").style.display = 'none';
+       if(document.getElementById("product-car").style.display == 'none')document.getElementById("product-car").style.display = 'block';
+       else{
+        document.getElementById("product-car").style.display = 'none'
+       } 
         caract.classList.toggle("closed")
     })    
     
 }
-   
-
-closeAccordeons()
+openCloseAccordeons()
+localStorage.setItem("myKey", "myValue");
 
 
 
